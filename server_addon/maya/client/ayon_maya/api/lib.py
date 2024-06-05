@@ -1745,6 +1745,9 @@ def get_container_members(container):
         # Assume it's a container dictionary
         container = container["objectName"]
 
+    if "," in container:
+        return [container]
+
     members = cmds.sets(container, query=True) or []
     members = cmds.ls(members, long=True, objectsOnly=True) or []
     all_members = set(members)

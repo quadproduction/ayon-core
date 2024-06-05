@@ -24,8 +24,16 @@ class ValidateInstanceHasMembers(plugin.MayaInstancePlugin):
 
     def process(self, instance):
         # Allow renderlayer, rendersetup and workfile to be empty
-        skip_families = {"workfile", "renderlayer", "rendersetup"}
-        if instance.data.get("productType") in skip_families:
+        skip_families = {"workfile",
+                         "renderlayer",
+                         "rendersetup",
+                         "mayaUsdLayer",
+                         "mayaUsd",
+                         "usdLayer",
+                         "usdAsset"}
+        families = {instance.data.get("family")}
+        families.update(instance.data.get("families", []))
+        if families.intersection(skip_families):
             return
 
         invalid = self.get_invalid(instance)
