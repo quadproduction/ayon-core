@@ -216,8 +216,6 @@ def create_root(
         for reference_layer in reference_layers:
             add_sub_layer(reference_layer, root_layer)
     stage.GetRootLayer().Save()
-    stage.GetRootLayer().Save()
-    return
 
 
 def create_asset(
